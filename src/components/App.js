@@ -1,35 +1,27 @@
-import React from 'react';
+import React from 'react'
 import '../styles/App.css';
 
-class App extends React.Component {
-  handleClick() {
-    this.setState({ count: this.state.count + 1 });
+class App extends React.Component{
+  
+  handleClick(){
+    this.setState({count: this.state.count + 1})
+  }
+  constructor(props){
+    super(props)
+    this.state = {count:0}
+    this.handleClick = this.handleClick.bind(this)
   }
 
-  constructor(props) {
-    super(props);
-    this.state = { count: 0 };
-    this.handleClick = this.handleClick.bind(this);
-  }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.count % 2 === 0) {
-      return true;
-    }
-    return false;
-  }
-
-  render() {
-    console.log(`Rendering with count: ${this.state.count}`);
-
-    return (
+  render(){
+   this.state.count%2==0 ? console.log(`Rendering with count:-${this.state.count}`) : this.state.count
+    return(
       <div>
-        <span id="count">{this.state.count}</span>
-        <button id="incr-btn" onClick={this.handleClick}>
-          Increment
-        </button>
+        <span id="count">{this.state.count%2==0 ? this.state.count : this.state.count-1}</span>
+        <button id="incr-btn" onClick={this.handleClick}>Increment</button>
       </div>
-    );
+    )
+
   }
 }
 
